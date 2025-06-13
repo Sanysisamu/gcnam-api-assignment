@@ -32,7 +32,7 @@ Then open:
 bash
 Copy
 Edit
-http://localhost:3001/frontend/index.html
+https://potential-adventure-4979w5p796rfqjxq-3000.app.github.dev/frontend/index.html
 If using Codespaces: open the corresponding GitHub Codespace port in your browser.
 
 ✅ Testing Sample Data
@@ -48,8 +48,6 @@ Occupants: 2
 
 Ages: 27, 26
 
-🔍 SonarCloud Integration
-Included in .github/workflows/sonarcloud.yml — triggers QA checks on pull requests.
 
 👨‍💻 Developer
 Your Sany Sisamu
@@ -57,7 +55,7 @@ Your Sany Sisamu
 GitHub: sanysisamu
 
 📎 Assignment Link
-https://github.com/GCNam-Dev-Team
+https://github.com/Sanysisamu/gcnam-api-assignment
 
 
 
@@ -94,10 +92,11 @@ jobs:
         with:
           php-version: '8.2'
 
-      - name: sanysisamu
+      - name: Run SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          SONAR_TOKEN: ${{ 1e0c93fb9312ebd9f11fb21872b2083ebc521597 }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           organization: sanysisamu
-          projectKey: gcnam-api-assignment
+          projectKey: organization: sanysisamu
+          projectKey: Sanysisamu_gcnam-api-assignment
