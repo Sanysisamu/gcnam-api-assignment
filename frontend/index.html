@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Rate Checker</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; }
+    label, input, button, textarea { display: block; width: 100%; margin-bottom: 12px; }
+    textarea { height: 100px; }
+  </style>
+</head>
+<body>
+  <h2>Booking Rate Checker</h2>
+
+  <label>Unit Name</label>
+  <input type="text" id="unitName" />
+
+  <label>Arrival Date (dd/mm/yyyy)</label>
+  <input type="text" id="arrival" />
+
+  <label>Departure Date (dd/mm/yyyy)</label>
+  <input type="text" id="departure" />
+
+  <label>Occupants</label>
+  <input type="number" id="occupants" />
+
+  <label>Ages (comma-separated)</label>
+  <input type="text" id="ages" placeholder="e.g. 34,10,5" />
+
+  <button onclick="checkRate()">Check Rate</button>
+
+  <h3>Result</h3>
+  <textarea id="result" readonly></textarea>
+
+  <script>
+    async function checkRate() {
+      const unitName = document.getElementById('unitName').value;
+      const arrival = document.getElementById('arrival').value;
+      const departure = document.getElementById('departure').value;
+      const occupants = parseInt(document.getElementById('occupants').value);
+      const ageInput = document.getElementById('ages').value;
+      const ages = ageInput.split(',').map(a => parseInt(a.trim())).filter(n => !isNaN(n));
+
+      const payload = {
+        "Unit Name": unitName,
+        "Arrival": arrival,
+        "Departure": departure,
+        "Occupants": occupants,
+        "Ages": ages
+      };
+
+      try {
+        const res = await fetch('../backend/index.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        document.getElementById('result').value = JSON.stringify(data, null, 2);
+      } catch (err) {
+        document.getElementById('result').value = "Error: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
