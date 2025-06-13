@@ -34,4 +34,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           organization: sanysisamu
-          projectKey: gcnam-api-assignment
+          projectKey: Sanysisamu_gcnam-api-assignment
